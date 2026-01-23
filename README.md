@@ -2,18 +2,18 @@
 
 **A simple and reusable Laravel package for role hierarchy and authority-based authorization.**
 
-This package allows you to define an **authority level** for your users and easily manage permissions between users of different levels.  
+This package allows you to define an **authority level** for your users and easily manage permissions between users of different levels.
 It works seamlessly with **API-only projects**, **Blade**, **Inertia**, or **Livewire**, and is fully **framework-agnostic**, so it can also be used alongside other permission packages like Spatie’s Roles & Permissions.
 
 ---
 
 ## Features
 
-- **Authority hierarchy**: easily compare users’ authority levels (`manage` logic built-in)  
-- **Reusability**: designed as a Laravel package, works across projects  
-- **Flexible**: integrate with any existing authorization system  
-- **API & Blade ready**: works in controllers, policies, and views  
-- **Lightweight**: minimal setup, no heavy dependencies  
+* **Authority hierarchy**: easily compare users’ authority levels (`manage` logic built-in)
+* **Reusability**: designed as a Laravel package, works across projects
+* **Flexible**: integrate with any existing authorization system
+* **API & Blade ready**: works in controllers, policies, and views
+* **Lightweight**: minimal setup, no heavy dependencies
 
 ---
 
@@ -47,17 +47,19 @@ return [
 
 ## Setup
 
-1. **Add the authority column to your users table:**
+1. **Run migrations**
+
+The package comes with a migration that adds the `authority_level` column to your `users` table.
+Just run:
 
 ```bash
-php artisan make:migration add_authority_level_to_users_table --table=users
+php artisan migrate
 ```
 
-```php
-$table->integer('authority_level')->default(0);
-```
+* If the column already exists, the migration will **not overwrite it**
+* No need to manually create a migration
 
-2. **Implement the AuthorityUser contract and use the HasAuthority trait in your User model:**
+2. **Add the Trait and implement the contract in your User model**
 
 ```php
 use Tamas1979\Authority\Contracts\AuthorityUser;
@@ -71,10 +73,13 @@ class User extends Authenticatable implements AuthorityUser
         'name',
         'email',
         'password',
-        'authority_level',
+        'authority_level', // required for authority logic
     ];
 }
 ```
+
+* The `HasAuthority` trait **must be added manually** for IDE support, type hinting, and policies to work properly
+* Runtime-only usage without the trait is possible via macros, but not recommended for full type safety
 
 ---
 
@@ -126,9 +131,9 @@ $this->authorize('manage', $targetUser);
 
 ## Contribution
 
-- Open for ideas, bug fixes, and feature requests  
-- Follows Laravel 11+ standards  
-- API-ready and Blade-compatible  
+* Open for ideas, bug fixes, and feature requests
+* Follows Laravel 11+ standards
+* API-ready and Blade-compatible
 
 ---
 
