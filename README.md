@@ -81,6 +81,18 @@ class User extends Authenticatable implements AuthorityUser
 * The `HasAuthority` trait **must be added manually** for IDE support, type hinting, and policies to work properly
 * Runtime-only usage without the trait is possible via macros, but not recommended for full type safety
 
+3. **Authority Level Guide (example)**
+
+| Role        | authority_level |
+| ----------- | --------------- |
+| SuperAdmin  | 1000            |
+| Owner Admin | 500             |
+| Admin       | 400             |
+| Moderator   | 300             |
+| User        | 100             |
+
+This table provides a **clear example** of how authority levels are mapped to roles.
+
 ---
 
 ## Usage
@@ -92,14 +104,14 @@ $user1 = \App\Models\User::create([
     'name' => 'Admin1',
     'email' => 'admin1@test.com',
     'password' => bcrypt('password'),
-    'authority_level' => 500,
+    'authority_level' => 500, // example
 ]);
 
 $user2 = \App\Models\User::create([
     'name' => 'Admin2',
     'email' => 'admin2@test.com',
     'password' => bcrypt('password'),
-    'authority_level' => 400,
+    'authority_level' => 400, // example
 ]);
 
 $user1->authorityLevel(); // 500
