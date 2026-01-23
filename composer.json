@@ -1,0 +1,25 @@
+{
+	"name": "tamas1979/laravel-authority",
+	"description": "Authority / hierarchy based authorization for Laravel",
+	"type": "library",
+	"license": "MIT",
+	"autoload": {
+	  "psr-4": {
+		"Tamas1979\\Authority\\": "src/"
+	  }
+	},
+	"require": {
+	  "php": "^8.2",
+	  "illuminate/support": "^11.0|^12.0"
+	},
+	"extra": {
+	  "laravel": {
+		"providers": [
+		  "Tamas1979\\Authority\\AuthorityServiceProvider"
+		]
+	  }
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
+  }
+  
