@@ -6,7 +6,7 @@ trait HasAuthority
 {
     public function authorityLevel(): int
     {
-        $column = config('authority.column');
+        $column = app('config')->get('authority.column');
 
         return (int) $this->{$column};
     }

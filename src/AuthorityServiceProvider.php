@@ -17,5 +17,10 @@ class AuthorityServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+		
+        // Config publish
+        $this->publishes([
+            __DIR__ . '/../config/authority.php' => \base_path('config/authority.php'),
+        ], 'config');
     }
 }
