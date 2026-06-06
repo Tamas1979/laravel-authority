@@ -144,7 +144,7 @@ $this->authorize('manage', $targetUser);
 ## Contribution
 
 * Open for ideas, bug fixes, and feature requests
-* Follows Laravel 11+ standards
+* Supports Laravel 11, 12, and 13
 * API-ready and Blade-compatible
 
 ---
